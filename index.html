@@ -4,11 +4,10 @@
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<title>Henry Alejandro Rozo Torres | Assessment Center</title>
-	<link rel="icon" href="https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f4bb.svg" type="image/svg+xml" />
+	<link rel="icon" href="favicon.svg" type="image/svg+xml" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap" rel="stylesheet" />
-	<script src="https://unpkg.com/feather-icons"></script>
 	<style>
 		:root {
 			--bg-a: #0f2342;
@@ -99,16 +98,16 @@
 
 		.card-btn {
 			flex: 1 1 0;
-			min-width: 320px;
+			min-width: 220px;
 			max-width: none;
 			border: 1px solid var(--border);
 			background: var(--surface-soft);
 			border-radius: 18px;
-			padding: 38px 28px;
+			padding: 14px 12px;
 			min-height: 100%;
 			color: var(--text);
 			text-align: left;
-			font-size: 1.15em;
+			font-size: 0.92em;
 			cursor: pointer;
 			transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease;
 			scroll-snap-align: start;
@@ -124,18 +123,22 @@
 		.card-btn.active {
 			border-color: #8fe5ff;
 			background: var(--surface);
-			box-shadow: 0 0 0 2px rgba(100, 219, 255, 0.22), var(--shadow);
-			transform: translateY(-3px);
+			box-shadow: 0 0 0 4px #66d2ff, 0 0 0 2px rgba(100, 219, 255, 0.22), var(--shadow);
+			transform: scale(1.02) translateY(-6px);
+			z-index: 2;
+			transition: box-shadow 0.3s, transform 0.3s, background 0.3s;
 		}
 
 		.card-head {
 			display: flex;
 			align-items: center;
 			gap: 10px;
-			margin-bottom: 18px;
+			margin-bottom: 12px;
 			color: var(--accent);
-			font-weight: 800;
-			font-size: 40px;
+			font-weight: 900;
+			font-size: 38px;
+			letter-spacing: 1px;
+			text-shadow: 0 2px 12px #0f2342cc;
 			font-family: var(--font-title);
 			line-height: 1.1;
 		}
@@ -144,8 +147,12 @@
 			margin: 0;
 			padding-left: 0;
 			color: #d9edfa;
-			line-height: 1.5;
+			line-height: 1.45;
 			font-size: 22px;
+			font-family: var(--font-body);
+			font-weight: 700;
+			letter-spacing: 0.5px;
+			text-shadow: 0 1px 8px #0f234255;
 			font-weight: 600;
 			max-width: 98%;
 		}
@@ -180,23 +187,26 @@
 			letter-spacing: 0.3px;
 		}
 
-		.speak-btn {
-			border: 1px solid #7adfff;
-			background: rgba(20, 126, 177, 0.28);
-			color: #e9f8ff;
-			font-family: var(--font-body);
-			font-weight: 700;
-			border-radius: 10px;
-			padding: 8px 12px;
-			display: inline-flex;
-			align-items: center;
-			gap: 8px;
+		.card-btn {
+			flex: 1 1 0;
+			min-width: 270px;
+			max-width: none;
+			border: 1px solid var(--border);
+			background: var(--surface-soft);
+			border-radius: 18px;
+			padding: 26px 20px;
+			min-height: 100%;
+			color: var(--text);
+			text-align: left;
+			font-size: 1em;
 			cursor: pointer;
-			transition: background 180ms ease;
+			transition: transform 220ms ease, box-shadow 220ms ease, background 220ms ease, filter 0.3s;
+			scroll-snap-align: start;
+			box-shadow: 0 14px 32px rgba(5, 14, 24, 0.28);
+			filter: brightness(0.85);
 		}
-
-		.speak-btn:hover {
-			background: rgba(25, 150, 208, 0.48);
+		.card-btn.active {
+			filter: brightness(1.1);
 		}
 
 		.pitch {
@@ -231,6 +241,13 @@
 		.micro-card:hover {
 			transform: translateY(-2px);
 			background: rgba(14, 56, 87, 0.7);
+		}
+
+		.micro-card.micro-highlight {
+			border-color: #67f2bf;
+			box-shadow: 0 0 0 3px rgba(103, 242, 191, 0.25), 0 10px 22px rgba(7, 31, 50, 0.4);
+			background: rgba(13, 62, 95, 0.92);
+			transform: translateY(-4px) scale(1.02);
 		}
 
 		.micro-label {
@@ -381,7 +398,7 @@
 			<div class="detail-top">
 				<h2 class="detail-title" id="detailTitle">¿Quién soy?</h2>
 				<button class="speak-btn" id="speakBtn" type="button">
-					<i data-feather="volume-2"></i>
+					<span aria-hidden="true">&#128266;</span>
 					Escuchar resumen
 				</button>
 			</div>
@@ -400,6 +417,10 @@
 
 		<div class="footer">Transformando procesos en datos confiables y decisiones precisas</div>
 	</main>
+
+	<!-- Firebase SDKs -->
+	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
 
 	<script>
 		const sectionData = {
@@ -482,6 +503,9 @@
 		const speakBtn = document.getElementById('speakBtn');
 		const timelineSteps = Array.from(document.querySelectorAll('.step'));
 		let activeSection = 'perfil';
+		let highlightedMicroIndex = null;
+		const sectionKeys = ['perfil', 'experiencia', 'automatizacion', 'habilidades', 'formacion'];
+		let activeSectionIndex = 0;
 
 		function updateTimeline(stage) {
 			timelineSteps.forEach((step, index) => {
@@ -504,20 +528,25 @@
 			detailPitch.textContent = data.pitch;
 
 			microGrid.innerHTML = data.micro
-				.map((item) => `
-					<article class="micro-card">
+				.map((item, idx) => `
+					<article class="micro-card${highlightedMicroIndex === idx ? ' micro-highlight' : ''}">
 						<p class="micro-label">${item.label}</p>
 						<p class="micro-value">${item.value}</p>
 					</article>
 				`)
 				.join('');
 
-			cards.forEach((card) => {
-				card.classList.toggle('active', card.dataset.section === sectionKey);
+			cards.forEach((card, idx) => {
+				card.classList.toggle('active', idx === activeSectionIndex);
 			});
 
+			// Scroll automático a la tarjeta activa
+			const activeCard = cards[activeSectionIndex];
+			if (activeCard) {
+				activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+			}
+
 			updateTimeline(data.stage);
-			feather.replace();
 		}
 
 		function speakSummary() {
@@ -534,16 +563,62 @@
 			window.speechSynthesis.speak(utterance);
 		}
 
-		cards.forEach((card) => {
+		cards.forEach((card, index) => {
 			card.addEventListener('click', () => {
-				renderSection(card.dataset.section);
+				goToSection(index);
 			});
 		});
 
 		speakBtn.addEventListener('click', speakSummary);
 
-		renderSection('perfil');
-		feather.replace();
+		renderSection(sectionKeys[activeSectionIndex]);
+
+		// Configuración de Firebase
+		const firebaseConfig = {
+			apiKey: "AIzaSyBac1VZn1kRfIu4rMSvd3MymJ0myCPgmHg",
+			authDomain: "presentacion-be908.firebaseapp.com",
+			databaseURL: "https://presentacion-be908-default-rtdb.firebaseio.com",
+			projectId: "presentacion-be908",
+			storageBucket: "presentacion-be908.firebasestorage.app",
+			messagingSenderId: "912832356787",
+			appId: "1:912832356787:web:f0fcf115bdb41aff016bc6",
+			measurementId: "G-LWSRES411H"
+		};
+
+		firebase.initializeApp(firebaseConfig);
+		const db = firebase.database();
+
+		function goToSection(index) {
+			if (index < 0 || index >= sectionKeys.length) return;
+			activeSectionIndex = index;
+			highlightedMicroIndex = null; // Al cambiar sección, quitar resaltado de microcard
+			renderSection(sectionKeys[index]);
+		}
+
+		function goLeft() {
+			goToSection((activeSectionIndex - 1 + sectionKeys.length) % sectionKeys.length);
+		}
+
+		function goRight() {
+			goToSection((activeSectionIndex + 1) % sectionKeys.length);
+		}
+
+		db.ref('control/comando').on('value', (snapshot) => {
+			const data = snapshot.val();
+			if (!data) return;
+			const cmd = data.value;
+			if (cmd === 'left') {
+				goLeft(); // Resalta tarjeta superior
+			} else if (cmd === 'right') {
+				goRight(); // Resalta tarjeta superior
+			} else if (cmd.startsWith('number-')) {
+				const num = parseInt(cmd.split('-')[1]);
+				if (num >= 1 && num <= sectionData[sectionKeys[activeSectionIndex]].micro.length) {
+					highlightedMicroIndex = num - 1; // Resalta microcard
+					renderSection(sectionKeys[activeSectionIndex]);
+				}
+			}
+		});
 	</script>
 </body>
 </html>
