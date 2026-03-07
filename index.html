@@ -235,7 +235,27 @@
 			justify-content: center;
 			min-height: 110px;
 			font-size: 1.1em;
+			position: relative;
 			transition: transform 180ms ease, background 180ms ease;
+		}
+
+		.micro-card.has-corner {
+			padding-top: 40px;
+		}
+
+		.micro-corner {
+			position: absolute;
+			top: 10px;
+			right: 10px;
+			padding: 3px 10px;
+			border-radius: 999px;
+			font-size: 11px;
+			font-weight: 800;
+			letter-spacing: 0.4px;
+			text-transform: uppercase;
+			background: rgba(102, 210, 255, 0.2);
+			border: 1px solid rgba(102, 210, 255, 0.55);
+			color: #bdeeff;
 		}
 
 		.micro-card:hover {
@@ -364,43 +384,39 @@
 	<main class="layout">
 		<header class="hero">
 			<h1>Henry Alejandro Rozo Torres</h1>
-			<p>Me apasiona analizar a fondo cada actividad, optimizar procesos y automatizarlos para eliminar errores manuales.</p>
+			<p>Me apasiona analizar a profundidad cada actividad, optimizar procesos y automatizarlos con el fin de eliminar errores manuales y mejorar la eficiencia.</p>
 		</header>
 
 		<section class="cards" aria-label="Secciones de presentacion">
 			<button class="card-btn active" data-section="perfil">
 				<div class="card-head">¿Quién soy?</div>
-				<p class="card-preview">Soy Alejandro y estoy enfocado en convertir la gestion de procesos en datos claros, mejoras reales y resultados para el equipo.</p>
+				<p class="card-preview">Soy Alejandro y me enfoco en transformar la gestión de procesos en datos claros, mejoras tangibles y resultados que aporten valor al equipo.</p>
 			</button>
 
 			<button class="card-btn" data-section="experiencia">
 				<div class="card-head">Proyectos en Belcorp</div>
-				<p class="card-preview">He impulsado iniciativas de exactitud y trazabilidad que fortalecen inventarios, control de movimientos y eficiencia de procesos.</p>
+				<p class="card-preview">He impulsado iniciativas orientadas a mejorar la exactitud y la trazabilidad, fortaleciendo los inventarios, el control de movimientos y la eficiencia de los procesos.</p>
 			</button>
 
 			<button class="card-btn" data-section="automatizacion">
 				<div class="card-head">Metas</div>
-				<p class="card-preview">Quiero crecer hacia Master Data Technical integrando automatizacion, calidad de datos y enfoque en impacto de negocio.</p>
+				<p class="card-preview">Quiero crecer hacia Master Data Technical, integrando automatización, calidad de datos y un enfoque en el impacto del negocio.</p>
 			</button>
 
 			<button class="card-btn" data-section="habilidades">
 				<div class="card-head">Habilidades</div>
-				<p class="card-preview">Combino SAP, Python y analisis con comunicacion y trabajo en equipo para convertir datos en decisiones.</p>
+				<p class="card-preview">Combino SAP, Python y análisis con comunicación y trabajo en equipo para convertir datos en decisiones.</p>
 			</button>
 
 			<button class="card-btn" data-section="formacion">
 				<div class="card-head">Formación</div>
-				<p class="card-preview">Mantengo preparacion constante en lo tecnico y humano para adaptarme rapido y aportar cada vez mas valor.</p>
+				<p class="card-preview">Mantengo una preparación constante tanto en lo técnico como en lo humano, lo que me permite adaptarme rápidamente y aportar cada vez más valor al equipo y a la organización.</p>
 			</button>
 		</section>
 
 		<section class="detail-panel" aria-live="polite">
 			<div class="detail-top">
 				<h2 class="detail-title" id="detailTitle">¿Quién soy?</h2>
-				<button class="speak-btn" id="speakBtn" type="button">
-					<span aria-hidden="true">&#128266;</span>
-					Escuchar resumen
-				</button>
 			</div>
 
 			<p class="pitch" id="detailPitch"></p>
@@ -430,7 +446,7 @@
 				pitch: 'Soy Alejandro y enfoco mi gestion en ordenar procesos, dar claridad al dato y generar mejoras que sumen al equipo.',
 				micro: [
 					{ label: 'Fortaleza', value: 'Analisis y enfoque' },
-					{ label: 'Estilo', value: 'Orden y disciplina' },
+					{ label: 'Enfoque', value: 'Orden y disciplina' },
 					{ label: 'Valor', value: 'Confianza en el dato' },
 					{ label: 'Actitud', value: 'Aprendizaje constante' },
 					{ label: 'En equipo', value: 'Colaboracion y respeto' },
@@ -443,12 +459,12 @@
 				stage: 1,
 				pitch: 'En Belcorp he liderado iniciativas que mejoran control, exactitud y trazabilidad en procesos clave de materiales.',
 				micro: [
-					{ label: 'Proyecto', value: 'Rol ERI' },
-					{ label: 'Impacto', value: 'Exactitud de inventarios' },
-					{ label: 'Proyecto', value: 'Conciliaciones' },
-					{ label: 'Impacto', value: 'Consistencia de materiales' },
-					{ label: 'Enfoque', value: 'Control de movimientos' },
-					{ label: 'Resultado', value: 'Menos reprocesos' }
+					{ label: 'Trazabilidad batch recórd', value: 'Procesos', corner: 'Escritorio' },
+					{ label: 'Monitor de abastecimiento de materiales', value: 'Almacén ENEM', corner: 'WEB' },
+					{ label: 'Análisis masivo de máteriales', value: 'Conciliacion', corner: 'Escritorio' },
+					{ label: 'Vacaciones', value: 'Almacén ENEM', corner: 'WEB' },
+					{ label: 'Despertando ideas', value: 'Lean Manufacturing', corner: 'WEB' },
+					{ label: 'Resultado', value: 'Menos reprocesos', corner: 'WEB' }
 				],
 				speech: 'Mis proyectos en Belcorp se enfocan en exactitud de inventarios, trazabilidad y mejora de procesos con impacto directo en la ejecución.'
 			},
@@ -500,7 +516,6 @@
 		const detailTitle = document.getElementById('detailTitle');
 		const detailPitch = document.getElementById('detailPitch');
 		const microGrid = document.getElementById('microGrid');
-		const speakBtn = document.getElementById('speakBtn');
 		const timelineSteps = Array.from(document.querySelectorAll('.step'));
 		let activeSection = 'perfil';
 		let highlightedMicroIndex = null;
@@ -529,7 +544,8 @@
 
 			microGrid.innerHTML = data.micro
 				.map((item, idx) => `
-					<article class="micro-card${highlightedMicroIndex === idx ? ' micro-highlight' : ''}">
+					<article class="micro-card${item.corner ? ' has-corner' : ''}${highlightedMicroIndex === idx ? ' micro-highlight' : ''}">
+						${item.corner ? `<span class="micro-corner">${item.corner}</span>` : ''}
 						<p class="micro-label">${item.label}</p>
 						<p class="micro-value">${item.value}</p>
 					</article>
@@ -568,8 +584,6 @@
 				goToSection(index);
 			});
 		});
-
-		speakBtn.addEventListener('click', speakSummary);
 
 		renderSection(sectionKeys[activeSectionIndex]);
 
@@ -611,6 +625,8 @@
 				goLeft(); // Resalta tarjeta superior
 			} else if (cmd === 'right') {
 				goRight(); // Resalta tarjeta superior
+			} else if (cmd === 'speak') {
+				speakSummary();
 			} else if (cmd.startsWith('number-')) {
 				const num = parseInt(cmd.split('-')[1]);
 				if (num >= 1 && num <= sectionData[sectionKeys[activeSectionIndex]].micro.length) {
