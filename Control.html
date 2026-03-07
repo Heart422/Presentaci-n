@@ -78,7 +78,7 @@
 	</style>
 </head>
 <body>
-	<div class="control-title">OK</div>
+	<!-- <div class="control-title">OK</div> -->
 	<div class="control-row">
 		<button class="control-btn" id="leftBtn">
 			<svg class="arrow" viewBox="0 0 120 120">
@@ -99,23 +99,36 @@
 		<button class="number-btn">5</button>
 		<button class="number-btn">6</button>
 	</div>
+	<!-- Firebase SDKs -->
+	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
 	<script>
-		// Aquí puedes agregar la lógica para enviar comandos a Assessmen.html
-		// Por ejemplo, usando WebSocket, fetch, o cualquier método de comunicación
-		// Ejemplo básico de eventos:
-		document.getElementById('leftBtn').onclick = () => {
-			console.log('Izquierda');
-			// enviar comando a Assessmen
+		// Configuración de Firebase
+		const firebaseConfig = {
+			apiKey: "AIzaSyBac1VZn1kRfIu4rMSvd3MymJ0myCPgmHg",
+			authDomain: "presentacion-be908.firebaseapp.com",
+			databaseURL: "https://presentacion-be908-default-rtdb.firebaseio.com",
+			projectId: "presentacion-be908",
+			storageBucket: "presentacion-be908.firebasestorage.app",
+			messagingSenderId: "912832356787",
+			appId: "1:912832356787:web:f0fcf115bdb41aff016bc6",
+			measurementId: "G-LWSRES411H"
 		};
-		document.getElementById('rightBtn').onclick = () => {
-			console.log('Derecha');
-			// enviar comando a Assessmen
-		};
+
+		firebase.initializeApp(firebaseConfig);
+		const db = firebase.database();
+
+		function sendCommand(cmd) {
+			db.ref('control/comando').set({
+				value: cmd,
+				timestamp: Date.now()
+			});
+		}
+
+		document.getElementById('leftBtn').onclick = () => sendCommand('left');
+		document.getElementById('rightBtn').onclick = () => sendCommand('right');
 		Array.from(document.getElementsByClassName('number-btn')).forEach((btn, idx) => {
-			btn.onclick = () => {
-				console.log('Número', idx + 1);
-				// enviar comando a Assessmen
-			};
+			btn.onclick = () => sendCommand('number-' + (idx + 1));
 		});
 	</script>
 </body>
