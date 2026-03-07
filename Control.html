@@ -56,6 +56,28 @@
 			gap: 32px;
 			margin-top: 18px;
 		}
+		.speak-remote {
+			margin-top: 22px;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+		}
+		.speak-btn {
+			width: 300px;
+			height: 64px;
+			background: #111;
+			color: #7fd3ff;
+			font-size: 1.35em;
+			font-weight: 800;
+			border-radius: 10px;
+			border: 1px solid #2e78b1;
+			cursor: pointer;
+			transition: background 0.2s, transform 0.2s;
+		}
+		.speak-btn:hover {
+			background: #1a1a1a;
+			transform: translateY(-2px);
+		}
 		.number-btn {
 			width: 90px;
 			height: 70px;
@@ -99,6 +121,9 @@
 		<button class="number-btn">5</button>
 		<button class="number-btn">6</button>
 	</div>
+	<div class="speak-remote">
+		<button class="speak-btn" id="speakBtn" type="button">Escuchar resumen</button>
+	</div>
 	<!-- Firebase SDKs -->
 	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
@@ -127,6 +152,7 @@
 
 		document.getElementById('leftBtn').onclick = () => sendCommand('left');
 		document.getElementById('rightBtn').onclick = () => sendCommand('right');
+		document.getElementById('speakBtn').onclick = () => sendCommand('speak');
 		Array.from(document.getElementsByClassName('number-btn')).forEach((btn, idx) => {
 			btn.onclick = () => sendCommand('number-' + (idx + 1));
 		});
