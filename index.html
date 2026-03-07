@@ -258,6 +258,17 @@
 			color: #bdeeff;
 		}
 
+		.micro-corner-link {
+			text-decoration: none;
+			cursor: pointer;
+			transition: transform 160ms ease, background 160ms ease;
+		}
+
+		.micro-corner-link:hover {
+			background: rgba(102, 210, 255, 0.35);
+			transform: translateY(-1px);
+		}
+
 		.micro-card:hover {
 			transform: translateY(-2px);
 			background: rgba(14, 56, 87, 0.7);
@@ -459,12 +470,12 @@
 				stage: 1,
 				pitch: 'En Belcorp he liderado iniciativas que mejoran control, exactitud y trazabilidad en procesos clave de materiales.',
 				micro: [
-					{ label: 'Trazabilidad batch recórd', value: 'Procesos', corner: 'Escritorio' },
-					{ label: 'Monitor de abastecimiento de materiales', value: 'Almacén ENEM', corner: 'WEB' },
-					{ label: 'Análisis masivo de máteriales', value: 'Conciliacion', corner: 'Escritorio' },
-					{ label: 'Vacaciones', value: 'Almacén ENEM', corner: 'WEB' },
-					{ label: 'Despertando ideas', value: 'Lean Manufacturing', corner: 'WEB' },
-					{ label: 'Resultado', value: 'Menos reprocesos', corner: 'WEB' }
+					{ label: 'Trazabilidad batch recórd', value: 'Procesos', corner: 'Escritorio',},
+					{ label: 'Monitor de abastecimiento de materiales', value: 'Almacén ENEM', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/VIDRIO/index.html' },
+					{ label: 'Análisis masivo de máteriales', value: 'Conciliacion', corner: 'Escritorio', },
+					{ label: 'Vacaciones', value: 'Almacén ENEM', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/vacaciones-2026/Agendavacaciones2026.html' },
+					{ label: 'Despertando ideas', value: 'Lean Manufacturing', corner: 'WEB', url: 'https://despertando-ideas.web.app/MentesBrillantes.html' },
+					{ label: 'Consulta Ubicacion Batch récord', value: 'Procesos y Almacén', corner: 'WEB', url: 'https://heart-trazabilidad.web.app/' }
 				],
 				speech: 'Mis proyectos en Belcorp se enfocan en exactitud de inventarios, trazabilidad y mejora de procesos con impacto directo en la ejecución.'
 			},
@@ -545,7 +556,7 @@
 			microGrid.innerHTML = data.micro
 				.map((item, idx) => `
 					<article class="micro-card${item.corner ? ' has-corner' : ''}${highlightedMicroIndex === idx ? ' micro-highlight' : ''}">
-						${item.corner ? `<span class="micro-corner">${item.corner}</span>` : ''}
+						${item.corner ? (item.url ? `<a class="micro-corner micro-corner-link" href="${item.url}" target="_blank" rel="noopener noreferrer">${item.corner}</a>` : `<span class="micro-corner">${item.corner}</span>`) : ''}
 						<p class="micro-label">${item.label}</p>
 						<p class="micro-value">${item.value}</p>
 					</article>
