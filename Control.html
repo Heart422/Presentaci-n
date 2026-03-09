@@ -1,199 +1,224 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>Control Remoto Assessmen</title>
-	<style>
-		body {
-			background: linear-gradient(180deg, #28609a 60%, #173d66 100%);
-			color: #4fa2e0;
-			font-family: 'Manrope', Arial, sans-serif;
-			margin: 0;
-			min-height: 100vh;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			justify-content: flex-start;
-		}
-		.control-title {
-			margin-top: 24px;
-			margin-bottom: 18px;
-			font-size: 2.2em;
-			font-weight: 700;
-			background: #173d66;
-			padding: 10px 32px;
-			border-radius: 8px;
-			color: #4fa2e0;
-			box-shadow: 0 2px 8px #0003;
-			letter-spacing: 0.04em;
-		}
-		.control-row {
-			display: flex;
-			gap: 18px;
-			margin-bottom: 18px;
-			width: 100%;
-			justify-content: center;
-		}
-		.control-btn {
-			width: 44vw;
-			max-width: 220px;
-			height: 110px;
-			background: #111;
-			border-radius: 16px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			cursor: pointer;
-			transition: background 0.2s, box-shadow 0.2s;
-			border: none;
-			box-shadow: 0 4px 16px #0002;
-		}
-		.control-btn:active {
-			background: #222;
-			box-shadow: 0 2px 8px #0004;
-		}
-		.arrow {
-			width: 70px;
-			height: 70px;
-			fill: #4fa2e0;
-		}
-		.control-numbers {
-			display: flex;
-			gap: 12px;
-			margin-top: 8px;
-			flex-wrap: wrap;
-			justify-content: center;
-		}
-		.number-btn {
-			width: 60px;
-			height: 48px;
-			background: #111;
-			color: #4fa2e0;
-			font-size: 1.35em;
-			font-weight: 700;
-			border-radius: 8px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin: 0;
-			border: none;
-			cursor: pointer;
-			transition: background 0.2s, box-shadow 0.2s;
-			box-shadow: 0 2px 8px #0002;
-		}
-		.number-btn:active {
-			background: #222;
-			box-shadow: 0 1px 4px #0004;
-		}
-		.speak-remote {
-			margin-top: 18px;
-			width: 100%;
-			display: flex;
-			justify-content: center;
-		}
-		.speak-btn {
-			width: 90vw;
-			max-width: 340px;
-			height: 54px;
-			background: #111;
-			color: #7fd3ff;
-			font-size: 1.15em;
-			font-weight: 800;
-			border-radius: 12px;
-			border: 1px solid #2e78b1;
-			cursor: pointer;
-			transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-			box-shadow: 0 2px 8px #0002;
-		}
-		.speak-btn:active {
-			background: #1a1a1a;
-			transform: translateY(-2px);
-			box-shadow: 0 1px 4px #0004;
-		}
-		@media (max-width: 600px) {
-			.control-title {
-				font-size: 1.3em;
-				padding: 8px 12px;
-			}
-			.control-btn {
-				width: 44vw;
-				max-width: 180px;
-				height: 90px;
-			}
-			.arrow {
-				width: 48px;
-				height: 48px;
-			}
-			.number-btn {
-				width: 44px;
-				height: 36px;
-				font-size: 1em;
-			}
-			.speak-btn {
-				height: 44px;
-				font-size: 1em;
-			}
-		}
-	</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Control Remoto Assessmen</title>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@700;900&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      min-height: 100vh;
+    }
+    body {
+      min-height: 100vh;
+      height: 100vh;
+      width: 100vw;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(160deg, #28609a 60%, #173d66 100%) fixed;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      font-family: 'Manrope', Arial, sans-serif;
+    }
+    .main-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100vw;
+      gap: 32px;
+    }
+    .control-title {
+      margin: 0 0 18px 0;
+      font-size: 2.2em;
+      font-weight: 900;
+      background: rgba(23,61,102,0.92);
+      padding: 14px 44px;
+      border-radius: 18px;
+      color: #7fd3ff;
+      box-shadow: 0 4px 24px #0003;
+      letter-spacing: 0.04em;
+      text-shadow: 0 2px 8px #0004;
+      border: 2px solid #4fa2e0;
+      backdrop-filter: blur(2px);
+      text-align: center;
+      user-select: none;
+    }
+    .dpad-panel {
+      margin: 0 auto 0 auto;
+      box-shadow: 0 8px 32px #0a2c4d33, 0 1.5px 0 #7fd3ff44;
+      border-radius: 38px;
+      background: none;
+      position: relative;
+      width: 340px;
+      height: 340px;
+      max-width: 92vw;
+      max-height: 60vw;
+      min-width: 180px;
+      min-height: 180px;
+      transition: box-shadow 0.22s;
+      user-select: none;
+      touch-action: none;
+    }
+    .dpad-panel:active {
+      box-shadow: 0 2px 12px #0a2c4d55, 0 1.5px 0 #7fd3ff44;
+    }
+    .dpad-svg {
+      border-radius: 38px;
+      box-shadow: 0 0 0 2px #4fa2e0;
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .dpad-arrow {
+      fill: none;
+      stroke: #0a2c4d;
+      stroke-width: 4;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      filter: drop-shadow(0 2px 6px #7fd3ff55);
+      transition: stroke 0.2s;
+    }
+    .dpad-touch {
+      position: absolute;
+      z-index: 2;
+      background: transparent;
+      border-radius: 18px;
+      transition: background 0.18s;
+    }
+    .dpad-touch:active {
+      background: rgba(127,211,255,0.18);
+      box-shadow: 0 0 0 2px #7fd3ff99;
+    }
+    .dpad-up    { left: 100px;  top: 0;     width: 140px; height: 100px;  }
+    .dpad-down  { left: 100px;  bottom: 0;  width: 140px; height: 100px;  }
+    .dpad-left  { left: 0;      top: 100px; width: 100px; height: 140px; }
+    .dpad-right { right: 0;     top: 100px; width: 100px; height: 140px; }
+    .dpad-center{ left: 100px;  top: 100px; width: 140px; height: 140px; border-radius: 28px; }
+    .speak-remote {
+      display: flex;
+      flex-direction: row;
+      gap: 32px;
+      margin-top: 32px;
+      justify-content: center;
+      width: 100%;
+    }
+    .speak-btn {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, #111 60%, #173d66 100%);
+      border: 2.5px solid #4fa2e0;
+      box-shadow: 0 4px 18px #0003, 0 0 0 2px #7fd3ff33;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.18s, box-shadow 0.18s, border-color 0.18s;
+      padding: 0;
+    }
+    .speak-btn:active {
+      background: #222;
+      box-shadow: 0 2px 8px #0004;
+      border-color: #7fd3ff;
+    }
+    .play-btn svg, .pause-btn svg {
+      display: block;
+    }
+    @media (max-width: 600px) {
+      .main-center {
+        gap: 18px;
+      }
+      .control-title {
+        font-size: 1.1em;
+        padding: 8px 12px;
+        border-radius: 10px;
+      }
+      .dpad-panel {
+        width: 200px; height: 200px; min-width: 120px; min-height: 120px; border-radius: 18px;
+      }
+      .dpad-svg { border-radius: 18px; }
+      .dpad-arrow { stroke-width: 4.5; }
+      .dpad-up, .dpad-down, .dpad-center { left: 58px; width: 84px; }
+      .dpad-up { height: 58px; }
+      .dpad-down { height: 58px; }
+      .dpad-left, .dpad-right { top: 58px; height: 84px; width: 58px; }
+      .dpad-center { top: 58px; height: 84px; border-radius: 16px; }
+      .speak-btn { width: 44px; height: 44px; }
+      .speak-remote { gap: 14px; margin-top: 18px; }
+    }
+  </style>
 </head>
 <body>
-	<div class="control-title">Control Remoto</div>
-	<div class="control-row">
-		<button class="control-btn" id="leftBtn" aria-label="Anterior">
-			<svg class="arrow" viewBox="0 0 120 120">
-				<polygon points="80,20 40,60 80,100 60,100 20,60 60,20" />
-			</svg>
-		</button>
-		<button class="control-btn" id="rightBtn" aria-label="Siguiente">
-			<svg class="arrow" viewBox="0 0 120 120">
-				<polygon points="40,20 80,60 40,100 60,100 100,60 60,20" />
-			</svg>
-		</button>
-	</div>
-	<div class="control-numbers">
-		<button class="number-btn" aria-label="Ir a sección 1">1</button>
-		<button class="number-btn" aria-label="Ir a sección 2">2</button>
-		<button class="number-btn" aria-label="Ir a sección 3">3</button>
-		<button class="number-btn" aria-label="Ir a sección 4">4</button>
-		<button class="number-btn" aria-label="Ir a sección 5">5</button>
-		<button class="number-btn" aria-label="Ir a sección 6">6</button>
-	</div>
-	<div class="speak-remote">
-		<button class="speak-btn" id="speakBtn" type="button">🔊 Escuchar resumen</button>
-	</div>
-	<!-- Firebase SDKs -->
-	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
-	<script>
-		// Configuración de Firebase
-		const firebaseConfig = {
-			apiKey: "AIzaSyBac1VZn1kRfIu4rMSvd3MymJ0myCPgmHg",
-			authDomain: "presentacion-be908.firebaseapp.com",
-			databaseURL: "https://presentacion-be908-default-rtdb.firebaseio.com",
-			projectId: "presentacion-be908",
-			storageBucket: "presentacion-be908.firebasestorage.app",
-			messagingSenderId: "912832356787",
-			appId: "1:912832356787:web:f0fcf115bdb41aff016bc6",
-			measurementId: "G-LWSRES411H"
-		};
-
-		firebase.initializeApp(firebaseConfig);
-		const db = firebase.database();
-
-		function sendCommand(cmd) {
-			db.ref('control/comando').set({
-				value: cmd,
-				timestamp: Date.now()
-			});
-		}
-
-		document.getElementById('leftBtn').onclick = () => sendCommand('left');
-		document.getElementById('rightBtn').onclick = () => sendCommand('right');
-		document.getElementById('speakBtn').onclick = () => sendCommand('speak');
-		Array.from(document.getElementsByClassName('number-btn')).forEach((btn, idx) => {
-			btn.onclick = () => sendCommand('number-' + (idx + 1));
-		});
-	</script>
+  <div class="main-center">
+    <div class="control-title">Control Remoto</div>
+    <div class="dpad-panel">
+      <svg class="dpad-svg" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="dpadBg" cx="50%" cy="50%" r="80%">
+            <stop offset="0%" stop-color="#4fa2e0" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#28609a" stop-opacity="1"/>
+          </radialGradient>
+        </defs>
+        <rect x="0" y="0" width="200" height="200" rx="38" fill="url(#dpadBg)" />
+        <!-- Flechas chevron pequeñas y pegadas al borde -->
+        <!-- Arriba -->
+        <polyline class="dpad-arrow" points="100,16 120,40 100,28 80,40 100,16" />
+        <!-- Abajo -->
+        <polyline class="dpad-arrow" points="100,184 120,160 100,172 80,160 100,184" />
+        <!-- Izquierda -->
+        <polyline class="dpad-arrow" points="16,100 40,80 28,100 40,120 16,100" />
+        <!-- Derecha -->
+        <polyline class="dpad-arrow" points="184,100 160,80 172,100 160,120 184,100" />
+      </svg>
+      <div class="dpad-touch dpad-up"    id="dpadUp"    aria-label="Arriba"></div>
+      <div class="dpad-touch dpad-down"  id="dpadDown"  aria-label="Abajo"></div>
+      <div class="dpad-touch dpad-left"  id="dpadLeft"  aria-label="Izquierda"></div>
+      <div class="dpad-touch dpad-right" id="dpadRight" aria-label="Derecha"></div>
+      <div class="dpad-touch dpad-center" id="dpadCenter" aria-label="Centro"></div>
+    </div>
+    <div class="speak-remote">
+      <button class="speak-btn play-btn" id="playBtn" type="button" aria-label="Reproducir resumen">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="18" fill="#173d66"/><polygon points="14,10 30,19 14,28" fill="#7fd3ff"/></svg>
+      </button>
+      <button class="speak-btn pause-btn" id="pauseBtn" type="button" aria-label="Pausar resumen">
+        <svg width="38" height="38" viewBox="0 0 38 38" fill="none"><circle cx="19" cy="19" r="18" fill="#173d66"/><rect x="13" y="11" width="4.5" height="16" rx="2" fill="#7fd3ff"/><rect x="21" y="11" width="4.5" height="16" rx="2" fill="#7fd3ff"/></svg>
+      </button>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.11/firebase-database-compat.js"></script>
+  <script>
+    // Configuración de Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyBac1VZn1kRfIu4rMSvd3MymJ0myCPgmHg",
+      authDomain: "presentacion-be908.firebaseapp.com",
+      databaseURL: "https://presentacion-be908-default-rtdb.firebaseio.com",
+      projectId: "presentacion-be908",
+      storageBucket: "presentacion-be908.appspot.com",
+      messagingSenderId: "912832356787",
+      appId: "1:912832356787:web:f0fcf115bdb41aff016bc6",
+      measurementId: "G-LWSRES411H"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    function sendCommand(cmd) {
+      db.ref('control/comando').set({
+        value: cmd,
+        timestamp: Date.now()
+      });
+    }
+    document.getElementById('dpadUp').onclick = () => sendCommand('up');
+    document.getElementById('dpadDown').onclick = () => sendCommand('down');
+    document.getElementById('dpadLeft').onclick = () => sendCommand('left');
+    document.getElementById('dpadRight').onclick = () => sendCommand('right');
+    document.getElementById('dpadCenter').onclick = () => sendCommand('center');
+    document.getElementById('playBtn').onclick = () => sendCommand('speak');
+    document.getElementById('pauseBtn').onclick = () => sendCommand('pause');
+  </script>
 </body>
 </html>
