@@ -154,10 +154,10 @@
       measurementId: "G-LWSRES411H"
     };
     firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
+    window.db = firebase.database();
     function sendCommand(cmd) {
       if (window.db) {
-        db.ref('control/comando').set({ value: cmd, timestamp: Date.now() });
+        window.db.ref('control/comando').set({ value: cmd, timestamp: Date.now() });
       }
     }
     // Joystick táctil
