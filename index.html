@@ -923,9 +923,28 @@
 			if (!data) return;
 			const cmd = data.value;
 			if (cmd === 'left') {
-				goLeft(); // Resalta tarjeta superior
+				goLeft(); // Cambia sección a la izquierda
 			} else if (cmd === 'right') {
-				goRight(); // Resalta tarjeta superior
+				goRight(); // Cambia sección a la derecha
+			} else if (cmd === 'up') {
+				// Mueve el foco microcard hacia arriba
+				if (highlightedMicroIndex === null) highlightedMicroIndex = 0;
+				highlightedMicroIndex = Math.max(0, highlightedMicroIndex - 1);
+				renderSection(sectionKeys[activeSectionIndex]);
+			} else if (cmd === 'down') {
+				// Mueve el foco microcard hacia abajo
+				const microLen = sectionData[sectionKeys[activeSectionIndex]].micro.length;
+				if (highlightedMicroIndex === null) highlightedMicroIndex = 0;
+				highlightedMicroIndex = Math.min(microLen - 1, highlightedMicroIndex + 1);
+				renderSection(sectionKeys[activeSectionIndex]);
+			} else if (cmd === 'center') {
+				// Activa la microcard resaltada (puedes personalizar la acción)
+				if (highlightedMicroIndex !== null) {
+					const micro = sectionData[sectionKeys[activeSectionIndex]].micro[highlightedMicroIndex];
+					if (micro && micro.url) {
+						window.open(micro.url, '_blank');
+					}
+				}
 			} else if (cmd === 'speak') {
 				activeSection = sectionKeys[activeSectionIndex];
 				speakSummary();
