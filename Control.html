@@ -181,12 +181,13 @@
         window.db.ref('control/comando').set({ value: cmd, timestamp: Date.now() });
       }
     }
-    // Joystick táctil
+
+    // Mejor sensibilidad táctil: swipe en todo el panel, menor distancia, respuesta rápida
     const joystick = document.getElementById('btnCenter');
     const panel = document.querySelector('.remote-square-panel');
     let dragging = false;
     let startX = 0, startY = 0;
-    let panelRect, maxDist = 90;
+    let maxDist = 70; // Menor distancia para detectar swipe
 
     function getDirection(dx, dy) {
       if (Math.abs(dx) > Math.abs(dy)) {
@@ -200,15 +201,13 @@
       joystick.style.transform = 'translate(-50%, -50%)';
     }
 
-    joystick.addEventListener('pointerdown', e => {
+    function handlePointerDown(e) {
       dragging = true;
-      panelRect = panel.getBoundingClientRect();
       startX = e.clientX;
       startY = e.clientY;
-      joystick.setPointerCapture(e.pointerId);
-    });
+    }
 
-    joystick.addEventListener('pointermove', e => {
+    function handlePointerMove(e) {
       if (!dragging) return;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
@@ -222,26 +221,30 @@
       } else {
         joystick.style.transform = `translate(calc(-50% + ${dx}px), calc(-50% + ${dy}px))`;
       }
-    });
+    }
 
-    joystick.addEventListener('pointerup', e => {
+    function handlePointerUp(e) {
       if (!dragging) return;
       dragging = false;
       const dx = e.clientX - startX;
       const dy = e.clientY - startY;
-        if (Math.abs(dx) > 4 || Math.abs(dy) > 4) {
-          const dir = getDirection(dx, dy);
-          if (navigator.vibrate) navigator.vibrate(30);
-          sendCommand(dir);
-        } else {
-          if (navigator.vibrate) navigator.vibrate([60, 20, 60]);
-          sendCommand('center');
-        }
+      if (Math.abs(dx) > 18 || Math.abs(dy) > 18) { // Más sensible
+        const dir = getDirection(dx, dy);
+        if (navigator.vibrate) navigator.vibrate(30);
+        sendCommand(dir);
+      } else {
+        if (navigator.vibrate) navigator.vibrate([60, 20, 60]);
+        sendCommand('center');
+      }
       resetJoystick();
-    });
+    }
 
-    joystick.addEventListener('pointercancel', resetJoystick);
-    joystick.addEventListener('mouseleave', resetJoystick);
+    // Swipe en todo el panel
+    panel.addEventListener('pointerdown', handlePointerDown);
+    panel.addEventListener('pointermove', handlePointerMove);
+    panel.addEventListener('pointerup', handlePointerUp);
+    panel.addEventListener('pointercancel', resetJoystick);
+    panel.addEventListener('mouseleave', resetJoystick);
 
     document.getElementById('playBtn').onclick = () => sendCommand('speak');
     document.getElementById('pauseBtn').onclick = () => sendCommand('pause');
@@ -253,3 +256,4 @@
   </script>
 </body>
 </html>
+
