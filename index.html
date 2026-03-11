@@ -582,6 +582,32 @@
 			padding-bottom: 2px;
 		}
 
+		.photo-overlay {
+			position: fixed;
+			inset: 0;
+			display: none;
+			align-items: center;
+			justify-content: center;
+			padding: 20px;
+			background: rgba(3, 12, 22, 0.88);
+			z-index: 60;
+		}
+
+		.photo-overlay.visible {
+			display: flex;
+		}
+
+		.photo-overlay img {
+			max-width: min(92vw, 1500px);
+			max-height: 92vh;
+			width: auto;
+			height: auto;
+			object-fit: contain;
+			border-radius: 14px;
+			border: 2px solid rgba(175, 214, 240, 0.44);
+			box-shadow: 0 20px 46px rgba(0, 0, 0, 0.45);
+		}
+
 		.detail-panel::-webkit-scrollbar {
 			width: 9px;
 		}
@@ -829,6 +855,29 @@
 		const sectionKeys = ['perfil', 'experiencia', 'automatizacion', 'habilidades', 'formacion'];
 		let activeSectionIndex = 0;
 		let keyboardRegion = 'cards';
+		let photoVisible = false;
+
+		function ensurePhotoOverlay() {
+			let overlay = document.querySelector('.photo-overlay');
+			if (overlay) {
+				return overlay;
+			}
+
+			overlay = document.createElement('div');
+			overlay.className = 'photo-overlay';
+			const image = document.createElement('img');
+			image.src = 'Imagen1.png';
+			image.alt = 'Imagen 1';
+			overlay.appendChild(image);
+			document.body.appendChild(overlay);
+			return overlay;
+		}
+
+		function togglePhotoOverlay() {
+			const overlay = ensurePhotoOverlay();
+			photoVisible = !photoVisible;
+			overlay.classList.toggle('visible', photoVisible);
+		}
 
 
 		function setDetailPanelLifted(isLifted) {
@@ -1121,6 +1170,8 @@
 				speakSummary();
 			} else if (cmd === 'pause') {
 				window.speechSynthesis.cancel();
+			} else if (cmd === 'photo') {
+				togglePhotoOverlay();
 			} else if (cmd.startsWith('number-')) {
 				const num = parseInt(cmd.split('-')[1]);
 				if (num >= 1 && num <= sectionData[sectionKeys[activeSectionIndex]].micro.length) {
