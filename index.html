@@ -867,17 +867,31 @@
 			overlay = document.createElement('div');
 			overlay.className = 'photo-overlay';
 			const image = document.createElement('img');
-			image.src = 'Imagen1.png';
+			image.src = '';
 			image.alt = 'Imagen 1';
 			overlay.appendChild(image);
 			document.body.appendChild(overlay);
 			return overlay;
 		}
 
-		function togglePhotoOverlay() {
+		function togglePhotoOverlay(imageSrc, imageAlt) {
 			const overlay = ensurePhotoOverlay();
-			photoVisible = !photoVisible;
-			overlay.classList.toggle('visible', photoVisible);
+			const image = overlay.querySelector('img');
+			if (!image) {
+				return;
+			}
+
+			const sameImageVisible = photoVisible && image.getAttribute('src') === imageSrc;
+			if (sameImageVisible) {
+				photoVisible = false;
+				overlay.classList.remove('visible');
+				return;
+			}
+
+			image.src = imageSrc;
+			image.alt = imageAlt;
+			photoVisible = true;
+			overlay.classList.add('visible');
 		}
 
 
@@ -1185,7 +1199,9 @@
 			} else if (cmd === 'pause') {
 				window.speechSynthesis.cancel();
 			} else if (cmd === 'photo') {
-				togglePhotoOverlay();
+				togglePhotoOverlay('Imagen1.png', 'Imagen 1');
+			} else if (cmd === 'photo2') {
+				togglePhotoOverlay('Imagen2.png', 'Imagen 2');
 			} else if (cmd.startsWith('number-')) {
 				const num = parseInt(cmd.split('-')[1]);
 				if (num >= 1 && num <= sectionData[sectionKeys[activeSectionIndex]].micro.length) {
