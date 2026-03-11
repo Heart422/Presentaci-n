@@ -757,7 +757,7 @@
 
 			<button class="card-btn" data-section="habilidades">
 				<div class="card-head">Habilidades</div>
-				<p class="card-preview">Combino SAP, Python y análisis con comunicación y trabajo en equipo para convertir datos en decisiones.</p>
+				<p class="card-preview">Combino SAP, Python y análisis de datos con comunicación efectiva. Mi base en programación me permite aprender rápidamente nuevas herramientas y adaptarme a tecnologías emergentes.</p>
 			</button>
 
 			<button class="card-btn" data-section="formacion">
@@ -806,7 +806,7 @@
 				title: 'Proyectos en Belcorp',
 				stage: 1,
 				micro: [
-					{ label: 'Trazabilidad batch récord', value: 'Procesos', corner: 'Escritorio',},
+					{ label: 'Trazabilidad batch récord', value: 'Procesos', corner: 'Escritorio', image: 'Imagen3.png' },
 					{ label: 'Monitor de materiales', value: 'Almacén ENEM', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/VIDRIO/index.html' },
 					{ label: 'Despertando ideas', value: 'Lean manufacturing', corner: 'WEB', url: 'https://despertando-ideas.web.app/MentesBrillantes.html' }
 				],
@@ -892,6 +892,16 @@
 			image.alt = imageAlt;
 			photoVisible = true;
 			overlay.classList.add('visible');
+		}
+
+		function closePhotoOverlay() {
+			const overlay = document.querySelector('.photo-overlay');
+			if (!overlay) {
+				return;
+			}
+
+			photoVisible = false;
+			overlay.classList.remove('visible');
 		}
 
 
@@ -1006,6 +1016,13 @@
 
 			const index = Number(card.getAttribute('data-micro-index'));
 			if (!Number.isNaN(index)) {
+				const micro = sectionData[sectionKeys[activeSectionIndex]].micro[index];
+				const clickedCorner = target.closest('.micro-corner');
+				if (clickedCorner && micro && micro.image) {
+					togglePhotoOverlay(micro.image, micro.label || 'Imagen');
+					return;
+				}
+
 				keyboardRegion = 'micro';
 				highlightedMicroIndex = index;
 				renderSection(sectionKeys[activeSectionIndex]);
@@ -1069,6 +1086,10 @@
 
 			if (micro && micro.url) {
 				window.open(micro.url, '_blank');
+			}
+
+			if (micro && micro.image) {
+				togglePhotoOverlay(micro.image, micro.label || 'Imagen');
 			}
 		}
 
@@ -1191,8 +1212,12 @@
 				highlightedMicroIndex = Math.min(microLen - 1, highlightedMicroIndex + 1);
 				renderSection(sectionKeys[activeSectionIndex]);
 			} else if (cmd === 'center') {
-				// Activa la microcard resaltada con feedback visual
-				activateHighlightedMicroCard();
+				if (photoVisible) {
+					closePhotoOverlay();
+				} else {
+					// Activa la microcard resaltada con feedback visual
+					activateHighlightedMicroCard();
+				}
 			} else if (cmd === 'speak') {
 				activeSection = sectionKeys[activeSectionIndex];
 				speakSummary();
