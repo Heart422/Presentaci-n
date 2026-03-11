@@ -337,7 +337,7 @@
 
 		.micro-grid {
 			display: grid;
-			grid-template-columns: repeat(6, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			grid-auto-rows: 136px;
 			gap: 10px;
 			min-height: 0;
@@ -713,10 +713,10 @@
 			<p class="hero-lead">Me apasiona analizar a profundidad cada actividad, optimizar procesos y automatizarlos con el fin de eliminar errores manuales y mejorar la eficiencia.</p>
 		</header>
 
-		<section class="cards" aria-label="Secciones de presentacion">
+		<section class="cards" aria-label="Secciones de presentación">
 			<button class="card-btn active" data-section="perfil">
 				<div class="card-head">¿Quién soy?</div>
-				<p class="card-preview">Soy Alejandro Rozo, una persona con enfoques personales y profesionales, entusiasmado por vivir la vida rodeado de las personas que amo. Tengo el anhelo de crecer en Belcorp, una gran compañía que admiro profundamente.</p>
+				<p class="card-preview">Soy Alejandro Rozo; nací en Bogotá, crecí en Zipaquirá y mi mamá me inculcó los valores y la ética que me definen. Soy una persona enfocada, con objetivos claros y el propósito de seguir creciendo en Belcorp.</p>
 			</button>
 
 			<button class="card-btn" data-section="experiencia">
@@ -752,7 +752,7 @@
 			<div class="timeline" id="timeline">
 				<span class="step" data-step="0">Administración</span>
 				<span class="step" data-step="1">Control y exactitud</span>
-				<span class="step" data-step="2">Automatizacion</span>
+				<span class="step" data-step="2">Automatización</span>
 				<span class="step" data-step="3">Master Data</span>
 			</div>
 		</section>
@@ -770,25 +770,19 @@
 				title: '¿Quién soy?',
 				stage: 0,
 				micro: [
-					{ label: 'Fortaleza', value: 'Pensamiento analítico' },
-					{ label: 'Enfoque', value: 'Organización y disciplina' },
-					{ label: 'Valor', value: 'Decisiones basadas en datos' },
-					{ label: 'Actitud', value: 'Aprendizaje constante' },
-					{ label: 'En equipo', value: 'Comunicación y colaboración' },
-					{ label: 'Resultado', value: 'Optimización de procesos' }
+					{ label: 'Fortaleza', value: 'Mi vida personal gira alrededor de mi familia, y mi principal propósito es ser un modelo de esfuerzo y valores para mis hijos.' },
+					{ label: 'Valor agregado', value: 'Soy una persona disciplinada, enfocada y orientada a cumplir metas con compromiso y claridad.' },
+					{ label: 'Propósito personal', value: 'Vivo la vida con alegría y agradecimiento, disfrutando cada aprendizaje. Me esfuerzo por ser una buena persona y compartir esa energía con quienes me acompañan.' }
 				],
-				speech: 'n resultados.'
+				speech: 'Soy una persona enfocada, con objetivos claros y el propósito de seguir creciendo en Belcorp.'
 			},
 			experiencia: {
 				title: 'Proyectos en Belcorp',
 				stage: 1,
 				micro: [
-					{ label: 'Trazabilidad batch recórd', value: 'Procesos', corner: 'Escritorio',},
+					{ label: 'Trazabilidad batch récord', value: 'Procesos', corner: 'Escritorio',},
 					{ label: 'Monitor de materiales', value: 'Almacén ENEM', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/VIDRIO/index.html' },
-					{ label: 'Análisis masivo de máteriales', value: 'Conciliacion', corner: 'Escritorio', },
-					{ label: 'Vacaciones', value: 'Almacén ENEM', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/vacaciones-2026/Agendavacaciones2026.html' },
-					{ label: 'Despertando ideas', value: 'Lean Manufacturing', corner: 'WEB', url: 'https://despertando-ideas.web.app/MentesBrillantes.html' },
-					{ label: 'Abastecimiento móvil', value: 'Procesos y Almacén', corner: 'WEB', url: 'https://trabajoestandarbelcorp-design.github.io/VIDRIO/abastecedor-movil.html' }
+					{ label: 'Despertando ideas', value: 'Lean manufacturing', corner: 'WEB', url: 'https://despertando-ideas.web.app/MentesBrillantes.html' }
 				],
 				speech: 'Mis proyectos en Belcorp se enfocan en exactitud de inventarios, trazabilidad y mejora de procesos con impacto directo en la ejecución.'
 			},
@@ -796,12 +790,9 @@
 				title: 'Metas',
 				stage: 2,
 				micro: [
-					{ label: 'Corto plazo', value: 'Automatizar procesos clave' },
-					{ label: 'Mediano plazo', value: 'Fortalecer la calidad de datos' },
-					{ label: 'Largo plazo', value: 'Consolidarme en la compañía' },
-					{ label: 'Foco', value: 'Datos confiables para decidir' },
-					{ label: 'Aporte', value: 'Eficiencia y optimización' },
-					{ label: 'Motivacion', value: 'Mejora continua' }
+					{ label: 'Corto plazo', value: 'Automatizar procesos clave y fortalecer mis habilidades en análisis de datos para aportar más valor al equipo.' },
+					{ label: 'Mediano plazo', value: 'Desarrollar dominio técnico en gestión de datos y participar en proyectos retadores relacionados con calidad y estandarización de información.' },
+					{ label: 'Largo plazo', value: 'Especializarme en auditoría y proyectarme hacia roles de Material Master Data para consolidarme en la compañía.' }
 				],
 				speech: 'Mis metas están enfocadas en crecer hacia Master Data, combinando automatización, control y confiabilidad de información.'
 			},
@@ -809,12 +800,9 @@
 				title: 'Habilidades',
 				stage: 3,
 				micro: [
-					{ label: 'Tecnico', value: 'Herramientas analíticas' },
-					{ label: 'Analisis', value: 'Lectura estratégica de datos' },
-					{ label: 'Calidad', value: 'Exactitud en la información' },
-					{ label: 'Comunicacion', value: 'Mensajes claros y útiles' },
-					{ label: 'Equipo', value: 'Colaboración y confianza' },
-					{ label: 'Gestion', value: 'Resultados y mejora' }
+					{ label: 'Técnico', value: 'Herramientas analíticas' },
+					{ label: 'Análisis', value: 'Lectura estratégica de datos' },
+					{ label: 'Calidad', value: 'Exactitud en la información' }
 				],
 				speech: 'Aporto habilidades técnicas y blandas para mejorar procesos, elevar la calidad de datos y trabajar de forma colaborativa.'
 			},
@@ -823,11 +811,8 @@
 				stage: 3,
 				micro: [
 					{ label: 'Mentalidad', value: 'Aprender siempre' },
-					{ label: 'Base', value: 'Formacion en gestion' },
-					{ label: 'Refuerzo', value: 'Practica aplicada' },
-					{ label: 'Desarrollo', value: 'Adaptabilidad' },
-					{ label: 'Proposito', value: 'Aportar mas valor' },
-					{ label: 'Proyeccion', value: 'Crecimiento profesional' }
+					{ label: 'Base', value: 'Formación en gestión' },
+					{ label: 'Refuerzo', value: 'Práctica aplicada' }
 				],
 				speech: 'Mantengo una preparación constante para crecer técnica y profesionalmente, con foco en aportar más valor en roles de datos y procesos.'
 			}
@@ -1159,5 +1144,4 @@
 	</script>
 </body>
 </html>
-
 
