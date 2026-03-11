@@ -856,6 +856,7 @@
 		let activeSectionIndex = 0;
 		let keyboardRegion = 'cards';
 		let photoVisible = false;
+		let lastRemoteTimestamp = null;
 
 		function ensurePhotoOverlay() {
 			let overlay = document.querySelector('.photo-overlay');
@@ -1146,6 +1147,19 @@
 		db.ref('control/comando').on('value', (snapshot) => {
 			const data = snapshot.val();
 			if (!data) return;
+			const cmdTimestamp = Number(data.timestamp) || 0;
+
+			// Ignora el último comando persistido al cargar; procesa solo eventos nuevos.
+			if (lastRemoteTimestamp === null) {
+				lastRemoteTimestamp = cmdTimestamp;
+				return;
+			}
+
+			if (cmdTimestamp <= lastRemoteTimestamp) {
+				return;
+			}
+
+			lastRemoteTimestamp = cmdTimestamp;
 			const cmd = data.value;
 			if (cmd === 'left') {
 				goLeft(); // Cambia sección a la izquierda
